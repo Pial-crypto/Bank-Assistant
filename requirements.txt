@@ -1,1 +1,5 @@
-rank-bm25
+
+pandas
+torch
+sentence-transformers
+requests

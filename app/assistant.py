@@ -23,15 +23,24 @@ class BankAssistant:
         print("Bank Assistant is ready.")
 
     def fallback_response(self, language):
-        """Return the fallback message in the user's language."""
+            
+        fallback_messages = {
+        "english": "I don't know, let me connect you to a person",
+        "bangla": "আমি জানি না। আপনাকে একজন প্রতিনিধির সাথে সংযুক্ত করে দিচ্ছি।",
+        "banglish": "Ami jani na. Apnake ekjon representative-er sathe connect kore dicchi."
+            }
+       
 
-        answer = self.translate_response(FALLBACK, language)
+        # answer = self.translate_response(FALLBACK, language)
 
         return {
-            "answer": answer,
-            "faq_id": None,
-            "status": "fallback"
-        }
+        "answer": fallback_messages.get(
+            language,
+            fallback_messages["english"]
+        ),
+        "faq_id": None,
+        "status": "fallback"
+    }
 
     def detect_language(self, text):
 
