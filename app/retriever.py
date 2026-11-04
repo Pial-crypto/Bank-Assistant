@@ -8,7 +8,7 @@ from app.config import (
     SIMILARITY_THRESHOLD,
 )
 
-
+from app.language import normalize_query
 class FAQRetriever:
 
     def __init__(self):
@@ -63,9 +63,9 @@ class FAQRetriever:
 
         if not isinstance(query, str) or not query.strip():
             return []
-
+        normalized_query = normalize_query(query)
         query_embedding = self.model.encode(
-            query.strip(),
+            normalized_query.strip(),
             convert_to_tensor=True,
             normalize_embeddings=True,
         )
