@@ -1,0 +1,121 @@
+﻿test_id,question,normalized_query,expected_faq_id,strategy,top1_faq_id,top1_score,top2_faq_id,top2_score,top3_faq_id,top3_score,score_margin,top3_faq_ids,expected_rank,expected_score,accepted,top1_correct,top3_correct,false_accept
+1,Personal loan er interest rate koto?,What is the interest rate for a personal loan?,19,original,19,0.9323,18,0.8039,20,0.7558,0.1285,"19, 18, 20",1.0,0.9323,True,True,True,False
+1,Personal loan er interest rate koto?,What is the interest rate for a personal loan?,19,normalized,19,0.9105,18,0.7641,20,0.6508,0.1464,"19, 18, 20",1.0,0.9105,True,True,True,False
+1,Personal loan er interest rate koto?,What is the interest rate for a personal loan?,19,combined,19,0.9323,18,0.8039,20,0.7558,0.1285,"19, 18, 20",1.0,0.9323,True,True,True,False
+2,When will my BEFTN transfer reach the other bank?,When will my BEFTN transfer reach the other bank?,8,original,8,0.8864,7,0.7852,26,0.5861,0.1012,"8, 7, 26",1.0,0.8864,True,True,True,False
+2,When will my BEFTN transfer reach the other bank?,When will my BEFTN transfer reach the other bank?,8,normalized,8,0.8864,7,0.7852,26,0.5861,0.1012,"8, 7, 26",1.0,0.8864,True,True,True,False
+2,When will my BEFTN transfer reach the other bank?,When will my BEFTN transfer reach the other bank?,8,combined,8,0.8864,7,0.7852,26,0.5861,0.1012,"8, 7, 26",1.0,0.8864,True,True,True,False
+3,"Amar account theke ekta transaction ami korini, kothay janabo?","From my account, an transaction was made, where is the money now?",24,original,24,0.7107,2,0.6433,1,0.6399,0.0674,"24, 2, 1",1.0,0.7107,True,True,True,False
+3,"Amar account theke ekta transaction ami korini, kothay janabo?","From my account, an transaction was made, where is the money now?",24,normalized,24,0.6802,26,0.5767,1,0.5472,0.1035,"24, 26, 1",1.0,0.6802,True,True,True,False
+3,"Amar account theke ekta transaction ami korini, kothay janabo?","From my account, an transaction was made, where is the money now?",24,combined,24,0.7107,2,0.6433,1,0.6399,0.0674,"24, 2, 1",1.0,0.7107,True,True,True,False
+4,What happens if I break my FDR early?,What happens if I break my FDR early?,17,original,17,0.7808,16,0.6296,8,0.3768,0.1512,"17, 16, 8",1.0,0.7808,True,True,True,False
+4,What happens if I break my FDR early?,What happens if I break my FDR early?,17,normalized,17,0.7808,16,0.6296,8,0.3768,0.1512,"17, 16, 8",1.0,0.7808,True,True,True,False
+4,What happens if I break my FDR early?,What happens if I break my FDR early?,17,combined,17,0.7808,16,0.6296,8,0.3768,0.1512,"17, 16, 8",1.0,0.7808,True,True,True,False
+5,What is the late payment fee on a credit card?,What is the late payment fee on a credit card?,23,original,23,0.8635,22,0.6884,3,0.6247,0.1751,"23, 22, 3",1.0,0.8635,True,True,True,False
+5,What is the late payment fee on a credit card?,What is the late payment fee on a credit card?,23,normalized,23,0.8635,22,0.6884,3,0.6247,0.1751,"23, 22, 3",1.0,0.8635,True,True,True,False
+5,What is the late payment fee on a credit card?,What is the late payment fee on a credit card?,23,combined,23,0.8635,22,0.6884,3,0.6247,0.1751,"23, 22, 3",1.0,0.8635,True,True,True,False
+6,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,22,original,22,0.7718,4,0.7419,5,0.6893,0.0298,"22, 4, 5",1.0,0.7718,True,True,True,False
+6,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,22,normalized,22,0.7718,4,0.7419,5,0.6893,0.0298,"22, 4, 5",1.0,0.7718,True,True,True,False
+6,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,22,combined,22,0.7718,4,0.7419,5,0.6893,0.0298,"22, 4, 5",1.0,0.7718,True,True,True,False
+7,Ek din e koto taka transfer kora jay?,How much money can be transferred in one day?,7,original,7,0.3788,5,0.3419,8,0.3375,0.0369,"7, 5, 8",1.0,0.3788,False,True,True,False
+7,Ek din e koto taka transfer kora jay?,How much money can be transferred in one day?,7,normalized,7,0.7877,9,0.6109,26,0.5909,0.1768,"7, 9, 26",1.0,0.7877,True,True,True,False
+7,Ek din e koto taka transfer kora jay?,How much money can be transferred in one day?,7,combined,7,0.7877,9,0.6109,26,0.5909,0.1768,"7, 9, 26",1.0,0.7877,True,True,True,False
+8,How can I get a bank statement for the last six months?,How can I get a bank statement for the last six months?,11,original,11,0.7142,13,0.588,22,0.5627,0.1261,"11, 13, 22",1.0,0.7142,True,True,True,False
+8,How can I get a bank statement for the last six months?,How can I get a bank statement for the last six months?,11,normalized,11,0.7142,13,0.588,22,0.5627,0.1261,"11, 13, 22",1.0,0.7142,True,True,True,False
+8,How can I get a bank statement for the last six months?,How can I get a bank statement for the last six months?,11,combined,11,0.7142,13,0.588,22,0.5627,0.1261,"11, 13, 22",1.0,0.7142,True,True,True,False
+9,এসএমএস অ্যালার্টের জন্য কত চার্জ?,SMS অ্যালার্টের জন্য কত চার্জ?,25,original,8,0.5614,4,0.4979,25,0.4817,0.0635,"8, 4, 25",3.0,0.4817,True,False,True,False
+9,এসএমএস অ্যালার্টের জন্য কত চার্জ?,SMS অ্যালার্টের জন্য কত চার্জ?,25,normalized,25,0.7887,9,0.5482,6,0.5248,0.2404,"25, 9, 6",1.0,0.7887,True,True,True,False
+9,এসএমএস অ্যালার্টের জন্য কত চার্জ?,SMS অ্যালার্টের জন্য কত চার্জ?,25,combined,25,0.7887,8,0.5614,9,0.5482,0.2272,"25, 8, 9",1.0,0.7887,True,True,True,False
+10,চেক বই পেতে কত দিন লাগে?,চেক বই পেতে কত দিন লাগে?,27,original,8,0.5745,27,0.5624,4,0.5469,0.0121,"8, 27, 4",2.0,0.5624,True,False,True,False
+10,চেক বই পেতে কত দিন লাগে?,চেক বই পেতে কত দিন লাগে?,27,normalized,8,0.5745,27,0.5624,4,0.5469,0.0121,"8, 27, 4",2.0,0.5624,True,False,True,False
+10,চেক বই পেতে কত দিন লাগে?,চেক বই পেতে কত দিন লাগে?,27,combined,8,0.5745,27,0.5624,4,0.5469,0.0121,"8, 27, 4",2.0,0.5624,True,False,True,False
+11,Will you waive the interest on my loan because my business made a loss?,Will you waive the interest on my loan because my business made a loss?,NO_ANSWER,original,19,0.6163,18,0.5674,29,0.5415,0.0488,"19, 18, 29",,,True,False,False,True
+11,Will you waive the interest on my loan because my business made a loss?,Will you waive the interest on my loan because my business made a loss?,NO_ANSWER,normalized,19,0.6163,18,0.5674,29,0.5415,0.0488,"19, 18, 29",,,True,False,False,True
+11,Will you waive the interest on my loan because my business made a loss?,Will you waive the interest on my loan because my business made a loss?,NO_ANSWER,combined,19,0.6163,18,0.5674,29,0.5415,0.0488,"19, 18, 29",,,True,False,False,True
+12,FDR korte minimum koto taka lage?,What is the minimum amount required to open an FDR?,16,original,16,0.8252,17,0.7016,20,0.4886,0.1236,"16, 17, 20",1.0,0.8252,True,True,True,False
+12,FDR korte minimum koto taka lage?,What is the minimum amount required to open an FDR?,16,normalized,16,0.848,17,0.682,1,0.5445,0.166,"16, 17, 1",1.0,0.848,True,True,True,False
+12,FDR korte minimum koto taka lage?,What is the minimum amount required to open an FDR?,16,combined,16,0.848,17,0.7016,1,0.5445,0.1464,"16, 17, 1",1.0,0.848,True,True,True,False
+13,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,NO_ANSWER,original,4,0.6478,8,0.6373,13,0.5326,0.0106,"4, 8, 13",,,True,False,False,True
+13,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,NO_ANSWER,normalized,4,0.6478,8,0.6373,13,0.5326,0.0106,"4, 8, 13",,,True,False,False,True
+13,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,NO_ANSWER,combined,4,0.6478,8,0.6373,13,0.5326,0.0106,"4, 8, 13",,,True,False,False,True
+14,এটিএম থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,ATM থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,9,original,8,0.6762,4,0.6274,25,0.5476,0.0487,"8, 4, 25",12.0,0.4424,True,False,False,False
+14,এটিএম থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,ATM থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,9,normalized,9,0.7747,25,0.6405,5,0.5625,0.1342,"9, 25, 5",1.0,0.7747,True,True,True,False
+14,এটিএম থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,ATM থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,9,combined,9,0.7747,8,0.6762,25,0.6405,0.0985,"9, 8, 25",1.0,0.7747,True,True,True,False
+15,Can I open a joint account with my spouse?,Can I open a joint account with my spouse?,14,original,14,0.9034,1,0.4784,13,0.4259,0.4249,"14, 1, 13",1.0,0.9034,True,True,True,False
+15,Can I open a joint account with my spouse?,Can I open a joint account with my spouse?,14,normalized,14,0.9034,1,0.4784,13,0.4259,0.4249,"14, 1, 13",1.0,0.9034,True,True,True,False
+15,Can I open a joint account with my spouse?,Can I open a joint account with my spouse?,14,combined,14,0.9034,1,0.4784,13,0.4259,0.4249,"14, 1, 13",1.0,0.9034,True,True,True,False
+16,What documents do I need to open a savings account?,What documents do I need to open a savings account?,1,original,1,0.9215,2,0.6453,13,0.6135,0.2762,"1, 2, 13",1.0,0.9215,True,True,True,False
+16,What documents do I need to open a savings account?,What documents do I need to open a savings account?,1,normalized,1,0.9215,2,0.6453,13,0.6135,0.2762,"1, 2, 13",1.0,0.9215,True,True,True,False
+16,What documents do I need to open a savings account?,What documents do I need to open a savings account?,1,combined,1,0.9215,2,0.6453,13,0.6135,0.2762,"1, 2, 13",1.0,0.9215,True,True,True,False
+17,Cheque er payment ta stop korbo kibhabe?,How should I stop a cheque payment?,28,original,28,0.7646,29,0.6172,11,0.6168,0.1473,"28, 29, 11",1.0,0.7646,True,True,True,False
+17,Cheque er payment ta stop korbo kibhabe?,How should I stop a cheque payment?,28,normalized,28,0.8971,27,0.5148,3,0.4814,0.3823,"28, 27, 3",1.0,0.8971,True,True,True,False
+17,Cheque er payment ta stop korbo kibhabe?,How should I stop a cheque payment?,28,combined,28,0.8971,29,0.6172,11,0.6168,0.2799,"28, 29, 11",1.0,0.8971,True,True,True,False
+18,আজকের স্বর্ণের দাম কত?,আজকের স্বর্ণের দাম কত?,NO_ANSWER,original,4,0.5027,23,0.4891,8,0.4768,0.0136,"4, 23, 8",,,False,False,False,False
+18,আজকের স্বর্ণের দাম কত?,আজকের স্বর্ণের দাম কত?,NO_ANSWER,normalized,4,0.5027,23,0.4891,8,0.4768,0.0136,"4, 23, 8",,,False,False,False,False
+18,আজকের স্বর্ণের দাম কত?,আজকের স্বর্ণের দাম কত?,NO_ANSWER,combined,4,0.5027,23,0.4891,8,0.4768,0.0136,"4, 23, 8",,,False,False,False,False
+19,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,NO_ANSWER,original,8,0.6598,4,0.5881,15,0.5485,0.0717,"8, 4, 15",,,True,False,False,True
+19,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,NO_ANSWER,normalized,8,0.6598,4,0.5881,15,0.5485,0.0717,"8, 4, 15",,,True,False,False,True
+19,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,NO_ANSWER,combined,8,0.6598,4,0.5881,15,0.5485,0.0717,"8, 4, 15",,,True,False,False,True
+20,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,2,original,4,0.6518,8,0.6408,13,0.5703,0.011,"4, 8, 13",7.0,0.522,True,False,False,False
+20,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,2,normalized,4,0.6518,8,0.6408,13,0.5703,0.011,"4, 8, 13",7.0,0.522,True,False,False,False
+20,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,2,combined,4,0.6518,8,0.6408,13,0.5703,0.011,"4, 8, 13",7.0,0.522,True,False,False,False
+21,Do you offer cryptocurrency trading accounts?,Do you offer cryptocurrency trading accounts?,NO_ANSWER,original,5,0.4535,1,0.4387,14,0.4332,0.0148,"5, 1, 14",,,False,False,False,False
+21,Do you offer cryptocurrency trading accounts?,Do you offer cryptocurrency trading accounts?,NO_ANSWER,normalized,5,0.4535,1,0.4387,14,0.4332,0.0148,"5, 1, 14",,,False,False,False,False
+21,Do you offer cryptocurrency trading accounts?,Do you offer cryptocurrency trading accounts?,NO_ANSWER,combined,5,0.4535,1,0.4387,14,0.4332,0.0148,"5, 1, 14",,,False,False,False,False
+22,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,18,original,8,0.6121,15,0.5728,4,0.5652,0.0393,"8, 15, 4",28.0,0.2294,True,False,False,False
+22,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,18,normalized,8,0.6121,15,0.5728,4,0.5652,0.0393,"8, 15, 4",28.0,0.2294,True,False,False,False
+22,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,18,combined,8,0.6121,15,0.5728,4,0.5652,0.0393,"8, 15, 4",28.0,0.2294,True,False,False,False
+23,Debit card er annual fee koto?,What is the annual fee for a debit card?,3,original,3,0.9129,4,0.7921,23,0.7234,0.1208,"3, 4, 23",1.0,0.9129,True,True,True,False
+23,Debit card er annual fee koto?,What is the annual fee for a debit card?,3,normalized,3,0.8647,4,0.7162,9,0.6804,0.1485,"3, 4, 9",1.0,0.8647,True,True,True,False
+23,Debit card er annual fee koto?,What is the annual fee for a debit card?,3,combined,3,0.9129,4,0.7921,23,0.7234,0.1208,"3, 4, 23",1.0,0.9129,True,True,True,False
+24,"Card er PIN bhule gechi, reset korbo kibhabe?",What should I do if I forget my card's PIN and need to reset it?,5,original,5,0.871,4,0.7161,24,0.6402,0.1549,"5, 4, 24",1.0,0.871,True,True,True,False
+24,"Card er PIN bhule gechi, reset korbo kibhabe?",What should I do if I forget my card's PIN and need to reset it?,5,normalized,5,0.8438,4,0.6966,3,0.5055,0.1472,"5, 4, 3",1.0,0.8438,True,True,True,False
+24,"Card er PIN bhule gechi, reset korbo kibhabe?",What should I do if I forget my card's PIN and need to reset it?,5,combined,5,0.871,4,0.7161,24,0.6402,0.1549,"5, 4, 24",1.0,0.871,True,True,True,False
+25,Branch gulo kon din kon shomoy khola thake?,When should the branch process a certain amount of money?,10,original,10,0.6552,8,0.6263,11,0.5763,0.0289,"10, 8, 11",1.0,0.6552,True,True,True,False
+25,Branch gulo kon din kon shomoy khola thake?,When should the branch process a certain amount of money?,10,normalized,11,0.647,19,0.5751,10,0.5616,0.072,"11, 19, 10",3.0,0.5616,True,False,True,False
+25,Branch gulo kon din kon shomoy khola thake?,When should the branch process a certain amount of money?,10,combined,10,0.6552,11,0.647,8,0.6263,0.0082,"10, 11, 8",1.0,0.6552,True,True,True,False
+26,নমিনি পরিবর্তন করতে কী লাগবে?,নমিনি পরিবর্তন করতে কী লাগবে?,15,original,8,0.626,4,0.5473,15,0.5372,0.0787,"8, 4, 15",3.0,0.5372,True,False,True,False
+26,নমিনি পরিবর্তন করতে কী লাগবে?,নমিনি পরিবর্তন করতে কী লাগবে?,15,normalized,8,0.626,4,0.5473,15,0.5372,0.0787,"8, 4, 15",3.0,0.5372,True,False,True,False
+26,নমিনি পরিবর্তন করতে কী লাগবে?,নমিনি পরিবর্তন করতে কী লাগবে?,15,combined,8,0.626,4,0.5473,15,0.5372,0.0787,"8, 4, 15",3.0,0.5372,True,False,True,False
+27,"আমার কার্ড হারিয়ে গেছে, এখন কী করব?","আমার কার্ড হারিয়ে গেছে, এখন কী করব?",4,original,4,0.7867,5,0.5902,3,0.5388,0.1965,"4, 5, 3",1.0,0.7867,True,True,True,False
+27,"আমার কার্ড হারিয়ে গেছে, এখন কী করব?","আমার কার্ড হারিয়ে গেছে, এখন কী করব?",4,normalized,4,0.7867,5,0.5902,3,0.5388,0.1965,"4, 5, 3",1.0,0.7867,True,True,True,False
+27,"আমার কার্ড হারিয়ে গেছে, এখন কী করব?","আমার কার্ড হারিয়ে গেছে, এখন কী করব?",4,combined,4,0.7867,5,0.5902,3,0.5388,0.1965,"4, 5, 3",1.0,0.7867,True,True,True,False
+28,How do I register for the NB Go mobile app?,How do I register for the NB Go mobile app?,6,original,6,0.9234,12,0.5732,5,0.4446,0.3501,"6, 12, 5",1.0,0.9234,True,True,True,False
+28,How do I register for the NB Go mobile app?,How do I register for the NB Go mobile app?,6,normalized,6,0.9234,12,0.5732,5,0.4446,0.3501,"6, 12, 5",1.0,0.9234,True,True,True,False
+28,How do I register for the NB Go mobile app?,How do I register for the NB Go mobile app?,6,combined,6,0.9234,12,0.5732,5,0.4446,0.3501,"6, 12, 5",1.0,0.9234,True,True,True,False
+29,Is there a fee to receive remittance from abroad?,Is there a fee to receive remittance from abroad?,26,original,26,0.8898,7,0.511,3,0.3945,0.3788,"26, 7, 3",1.0,0.8898,True,True,True,False
+29,Is there a fee to receive remittance from abroad?,Is there a fee to receive remittance from abroad?,26,normalized,26,0.8898,7,0.511,3,0.3945,0.3788,"26, 7, 3",1.0,0.8898,True,True,True,False
+29,Is there a fee to receive remittance from abroad?,Is there a fee to receive remittance from abroad?,26,combined,26,0.8898,7,0.511,3,0.3945,0.3788,"26, 7, 3",1.0,0.8898,True,True,True,False
+30,How much of the property value can I borrow for a home loan?,How much of the property value can I borrow for a home loan?,20,original,20,0.9158,18,0.6218,19,0.619,0.294,"20, 18, 19",1.0,0.9158,True,True,True,False
+30,How much of the property value can I borrow for a home loan?,How much of the property value can I borrow for a home loan?,20,normalized,20,0.9158,18,0.6218,19,0.619,0.294,"20, 18, 19",1.0,0.9158,True,True,True,False
+30,How much of the property value can I borrow for a home loan?,How much of the property value can I borrow for a home loan?,20,combined,20,0.9158,18,0.6218,19,0.619,0.294,"20, 18, 19",1.0,0.9158,True,True,True,False
+31,Credit card nite hole income koto hote hobe?,What income comes in when using a credit card?,21,original,22,0.807,21,0.8018,4,0.6795,0.0052,"22, 21, 4",2.0,0.8018,True,False,True,False
+31,Credit card nite hole income koto hote hobe?,What income comes in when using a credit card?,21,normalized,22,0.7224,21,0.7173,3,0.5845,0.0052,"22, 21, 3",2.0,0.7173,True,False,True,False
+31,Credit card nite hole income koto hote hobe?,What income comes in when using a credit card?,21,combined,22,0.807,21,0.8018,4,0.6795,0.0052,"22, 21, 4",2.0,0.8018,True,False,True,False
+32,What is today's dollar to taka exchange rate?,What is today's dollar to taka exchange rate?,NO_ANSWER,original,23,0.5121,26,0.5039,19,0.4961,0.0082,"23, 26, 19",,,False,False,False,False
+32,What is today's dollar to taka exchange rate?,What is today's dollar to taka exchange rate?,NO_ANSWER,normalized,23,0.5121,26,0.5039,19,0.4961,0.0082,"23, 26, 19",,,False,False,False,False
+32,What is today's dollar to taka exchange rate?,What is today's dollar to taka exchange rate?,NO_ANSWER,combined,23,0.5121,26,0.5039,19,0.4961,0.0082,"23, 26, 19",,,False,False,False,False
+33,Apnader bank er share kinle labh hobe?,How does one earn dividends from one's bank's shares?,NO_ANSWER,original,11,0.5971,13,0.5899,7,0.5784,0.0073,"11, 13, 7",,,True,False,False,True
+33,Apnader bank er share kinle labh hobe?,How does one earn dividends from one's bank's shares?,NO_ANSWER,normalized,19,0.4485,16,0.4323,7,0.4203,0.0162,"19, 16, 7",,,False,False,False,False
+33,Apnader bank er share kinle labh hobe?,How does one earn dividends from one's bank's shares?,NO_ANSWER,combined,11,0.5971,13,0.5899,7,0.5784,0.0073,"11, 13, 7",,,True,False,False,True
+34,"আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?","আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?",12,original,12,0.6352,4,0.4893,8,0.4798,0.1459,"12, 4, 8",1.0,0.6352,True,True,True,False
+34,"আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?","আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?",12,normalized,12,0.6352,4,0.4893,8,0.4798,0.1459,"12, 4, 8",1.0,0.6352,True,True,True,False
+34,"আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?","আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?",12,combined,12,0.6352,4,0.4893,8,0.4798,0.1459,"12, 4, 8",1.0,0.6352,True,True,True,False
+35,Account dormant hoye gele ki korte hobe?,What should be done if an account becomes dormant?,13,original,13,0.7143,29,0.6314,1,0.5472,0.0829,"13, 29, 1",1.0,0.7143,True,True,True,False
+35,Account dormant hoye gele ki korte hobe?,What should be done if an account becomes dormant?,13,normalized,13,0.8205,29,0.6331,2,0.6243,0.1874,"13, 29, 2",1.0,0.8205,True,True,True,False
+35,Account dormant hoye gele ki korte hobe?,What should be done if an account becomes dormant?,13,combined,13,0.8205,29,0.6331,2,0.6243,0.1874,"13, 29, 2",1.0,0.8205,True,True,True,False
+36,Can you give me the phone number of the branch manager in Sylhet?,Can you give me the phone number of the branch manager in Sylhet?,NO_ANSWER,original,12,0.5793,10,0.4907,6,0.3604,0.0886,"12, 10, 6",,,True,False,False,True
+36,Can you give me the phone number of the branch manager in Sylhet?,Can you give me the phone number of the branch manager in Sylhet?,NO_ANSWER,normalized,12,0.5793,10,0.4907,6,0.3604,0.0886,"12, 10, 6",,,True,False,False,True
+36,Can you give me the phone number of the branch manager in Sylhet?,Can you give me the phone number of the branch manager in Sylhet?,NO_ANSWER,combined,12,0.5793,10,0.4907,6,0.3604,0.0886,"12, 10, 6",,,True,False,False,True
+37,"Amar boyosh 17, ami ki student loan pabo?","My age is 17, so how can I apply for a student loan?",NO_ANSWER,original,18,0.6815,20,0.6177,19,0.5104,0.0638,"18, 20, 19",,,True,False,False,True
+37,"Amar boyosh 17, ami ki student loan pabo?","My age is 17, so how can I apply for a student loan?",NO_ANSWER,normalized,18,0.6815,19,0.5949,20,0.5621,0.0866,"18, 19, 20",,,True,False,False,True
+37,"Amar boyosh 17, ami ki student loan pabo?","My age is 17, so how can I apply for a student loan?",NO_ANSWER,combined,18,0.6815,20,0.6177,19,0.5949,0.0638,"18, 20, 19",,,True,False,False,True
+38,KYC update koto bochor por por korte hoy?,KYC update to be done repeatedly for some reason?,30,original,30,0.8834,5,0.5993,12,0.5801,0.284,"30, 5, 12",1.0,0.8834,True,True,True,False
+38,KYC update koto bochor por por korte hoy?,KYC update to be done repeatedly for some reason?,30,normalized,30,0.7726,8,0.3783,2,0.3463,0.3943,"30, 8, 2",1.0,0.7726,True,True,True,False
+38,KYC update koto bochor por por korte hoy?,KYC update to be done repeatedly for some reason?,30,combined,30,0.8834,5,0.5993,12,0.5801,0.284,"30, 5, 12",1.0,0.8834,True,True,True,False
+39,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,NO_ANSWER,original,8,0.6383,4,0.6028,15,0.5258,0.0355,"8, 4, 15",,,True,False,False,True
+39,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,NO_ANSWER,normalized,8,0.6383,4,0.6028,15,0.5258,0.0355,"8, 4, 15",,,True,False,False,True
+39,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,NO_ANSWER,combined,8,0.6383,4,0.6028,15,0.5258,0.0355,"8, 4, 15",,,True,False,False,True
+40,How do I close my account?,How do I close my account?,29,original,29,0.8796,13,0.5522,2,0.4967,0.3273,"29, 13, 2",1.0,0.8796,True,True,True,False
+40,How do I close my account?,How do I close my account?,29,normalized,29,0.8796,13,0.5522,2,0.4967,0.3273,"29, 13, 2",1.0,0.8796,True,True,True,False
+40,How do I close my account?,How do I close my account?,29,combined,29,0.8796,13,0.5522,2,0.4967,0.3273,"29, 13, 2",1.0,0.8796,True,True,True,False

@@ -1,87 +1,230 @@
-import requests
+
 import re
+import requests
+import unicodedata
 
 from app.config import OLLAMA_MODEL, OLLAMA_URL
 
 
-PHRASE_MAP = {
-    r"amar card hariye geche": "My card has been lost",
-    r"amar card hariye gese": "My card has been lost",
-    r"card hariye geche": "The card has been lost",
-    r"card churi hoye geche": "The card has been stolen",
-    r"amar card churi hoye geche": "My card has been stolen",
+BANGLISH_MARKERS = {
+    # Pronouns
+    "ami", "amar", "amra", "amader",
+    "apni", "apnar", "apnara", "apnader",
+    "tumi", "tomar", "tomra", "tomader",
+
+    # Question words
+    "ki", "kono", "kothay", "kokhon",
+    "kobe", "koto", "kotodin", "koydin",
+    "koyta", "koita", "koybar",
+    "kivabe", "kibhabe", "keno",
+    "kon", "konta",
+
+    # Actions and verbs
+    "korbo", "korben", "kori", "korini",
+    "korechi", "kore", "kora", "korte",
+    "korle", "hobe", "hoy", "hoye",
+    "hoyeche", "hoyni", "hoyna",
+    "hote", "hole", "parbo",
+    "pabo", "pawa", "diben", "dibo",
+    "deya", "dewa", "nibo", "nite",
+    "nile", "niye", "lagbe", "lage",
+    "chai", "dorkar", "khulte",
+    "khulbo", "khule", "bondho",
+    "pathabo", "pathale", "pathate",
+    "ashbe", "asche", "jabe", "jabo",
+    "jay", "janabo", "bolbo", "bolben",
+    "geche", "gese", "hariye",
+    "kinle", "gele", "thake", "thakbe",
+
+    # Time and frequency
+    "ekhon", "aj", "kal", "por",
+    "pore", "proti", "prottek",
+    "din", "dine", "mashe",
+    "bochor", "bochore", "ghonta",
+    "tarikh", "shomoy", "somoy",
+
+    # Money and quantities
+    "taka", "hajar", "lakh",
+    "khoroch", "dam", "mullo",
+    "beton", "beshi", "kom",
+
+    # Location and direction
+    "theke", "porjonto", "moddhe",
+    "upore", "niche", "baire",
+    "vitor", "basha", "basay", "bashay",
+
+    # Connectors
+    "naki", "jonno", "sathe",
+    "diye", "charai", "shudhu",
+    "matro", "er",
+
+    # Common states
+    "ache", "nei", "nai",
 }
 
-BANGLISH_MARKERS = {
-    "amar", "ami", "apnar", "koto", "kivabe",
-    "kibhabe", "korbo", "korini", "lagbe",
-    "khulte", "geche", "gese", "hariye",
-    "ekhon", "kothay", "janabo", "dorkar",
-    "hobe", "hoy", "hoye", "nibo", "nite",
-    "pabo", "ache", "nei", "chai", "diben",
-    "kore", "keno", "jonno", "ki",
+
+PHRASE_MAP = {
+    "amar card hariye geche": "My card has been lost",
+    "amar card hariye gese": "My card has been lost",
+    "card hariye geche": "The card has been lost",
+    "card churi hoye geche": "The card has been stolen",
+    "amar card churi hoye geche": "My card has been stolen",
+    "cheque er payment": "cheque payment",
+}
+
+
+
+WORD_MAP = {
+    # Debit card
+    "dabit": "debit",
+    "ডেবিট": "debit",
+
+    # ATM
+    "এটিএম": "ATM",
+
+    # SMS
+    "এস এম এস": "SMS",
+    "এসএম এস": "SMS",
+    "এসএমএস": "SMS",
+
+    # NID
+    "national identity card": "NID",
+    "national id": "NID",
+    "জাতীয় পরিচয়পত্র": "NID",
+    "জাতীয় পরিচয়পত্র": "NID",
+    "এনআইডি": "NID",
+
+    # FDR
+    "fixed term deposit": "FDR",
+    "fixed deposit": "FDR",
+    "ফিক্সড ডিপোজিট": "FDR",
+
+    # Percentage
+    "per cent": "percent",
+    "শতকরা": "percent",
+    "শতাংশ": "percent",
+    "শতে": "percent",
+
+    # Annual / yearly
+    "every year": "annual",
+    "per year": "annual",
+    "yearly": "annual",
+    "বার্ষিক": "annual",
+    "প্রতি বছর": "annual",
+    "বছরে": "annual",
+
+    # Remittance
+    "রেমিটেন্স": "remittance",
+    "রেমিট্যান্স": "remittance",
+    "বিদেশ থেকে টাকা পাঠানো": "remittance",
+    "বাইরে থেকে টাকা পাঠানো": "remittance",
+    "abroad theke taka pathano": "remittance",
+
+    # Penalty
+    "জরিমানা": "penalty",
+    # "fine": "penalty",
 }
 
 
 def is_banglish(text):
     words = set(re.findall(r"[a-zA-Z]+", text.lower()))
-    return len(words.intersection(BANGLISH_MARKERS)) >= 2
+    matches = words.intersection(BANGLISH_MARKERS)
+
+    return len(matches) >= 2
 
 
 def apply_phrase_mapping(query):
+    mapped = query
 
-    normalized = query.lower()
+    for phrase, replacement in PHRASE_MAP.items():
+        mapped = re.sub(
+            re.escape(phrase),
+            replacement,
+            mapped,
+            flags=re.IGNORECASE
+        )
 
-    for pattern, replacement in PHRASE_MAP.items():
-        if re.search(pattern, normalized):
-            normalized = re.sub(
-                pattern,
-                replacement,
-                normalized,
-                flags=re.IGNORECASE
-            )
+    return mapped
 
-    return normalized
+
+def apply_word_mapping(query):
+    mapped = query
+
+   
+    mappings = sorted(
+        WORD_MAP.items(),
+        key=lambda item: len(item[0]),
+        reverse=True
+    )
+
+    for source, replacement in mappings:
+
+        if re.search(r"[a-zA-Z]", source):
+           
+            pattern = r"(?<![a-zA-Z])" + re.escape(source) + r"(?![a-zA-Z])"
+        else:
+            
+            pattern = re.escape(source)
+
+        mapped = re.sub(
+            pattern,
+            replacement,
+            mapped,
+            flags=re.IGNORECASE
+        )
+
+    return mapped
 
 
 def normalize_query(query):
 
-    if not is_banglish(query):
+    if not isinstance(query, str) or not query.strip():
         return query
 
-    mapped_query = apply_phrase_mapping(query)
+    query = unicodedata.normalize("NFKC", query).strip()
 
-    # If a known banking phrase was translated,
-    # preserve it and normalize only the remaining text.
-    if mapped_query != query.lower():
+    
+    mapped_query = apply_phrase_mapping(query)
+    mapped_query = apply_word_mapping(mapped_query)
+
+   
+    if re.search(r"[\u0980-\u09FF]", mapped_query):
+        return mapped_query
+
+    
+    if not is_banglish(mapped_query):
         return mapped_query
 
     prompt = f"""
-Translate the complete Banglish question into English.
+Translate the following complete Banglish banking question into English.
 
-IMPORTANT:
-- Preserve every meaningful detail.
-- Never remove the subject or the main event.
-- Do not answer the question.
-- Do not summarize.
-- Translate the entire sentence.
-- If unsure about a word, preserve its meaning as closely as possible.
+Preserve:
+- The exact subject.
+- The main action or problem.
+- Numbers, amounts and ages.
+- Negations and important conditions.
+- Banking terms and their intended meaning.
+
+Rules:
+- Never answer the question.
+- Never summarize.
+- Never omit meaningful details.
+- Do not invent information.
+- Return only the English translation.
 
 Examples:
 
 Amar card hariye geche, ekhon ki korbo?
-= My card has been lost. What should I do now?
+My card has been lost. What should I do now?
 
-Savings account khulte ki ki documents lagbe?
-= What documents are required to open a savings account?
+Ek din e koto taka transfer kora jay?
+How much money can be transferred in one day?
 
-Personal loan er interest rate koto?
-= What is the interest rate on a personal loan?
+Debit card er annual fee koto?
+What is the annual fee for a debit card?
 
-Customer question:
-{query}
-
-Return only the complete English translation.
+Input:
+{mapped_query}
 """
 
     try:
@@ -92,7 +235,10 @@ Return only the complete English translation.
                 "messages": [
                     {
                         "role": "system",
-                        "content": "Translate Banglish faithfully without omitting meaning."
+                        "content": (
+                            "You are a faithful Banglish-to-English "
+                            "translator for banking questions."
+                        )
                     },
                     {
                         "role": "user",
@@ -100,20 +246,25 @@ Return only the complete English translation.
                     }
                 ],
                 "stream": False,
-                "options": {"temperature": 0}
+                "options": {
+                    "temperature": 0
+                }
             },
             timeout=30
         )
 
         response.raise_for_status()
 
-        translated = response.json()["message"]["content"].strip()
+        translated = (
+            response.json()["message"]["content"].strip()
+        )
 
-        if translated:
+        if translated and len(translated) >= 5:
             print(f"Normalized query: {translated}")
             return translated
 
     except Exception as error:
         print(f"Normalization failed: {error}")
 
-    return query
+    
+    return mapped_query

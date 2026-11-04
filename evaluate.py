@@ -1,91 +1,245 @@
 
-import pandas as pd
+import time
 from pathlib import Path
 
-from app.retriever import FAQRetriever
+import pandas as pd
+
+from app.assistant import BankAssistant
 
 
 TEST_PATH = Path("data/test-questions.csv")
-OUTPUT_PATH = Path("evaluation/retrieval-results.csv")
+GROUND_TRUTH_PATH = Path("evaluation/ground-truth.csv")
+OUTPUT_PATH = Path("evaluation/final-results.csv")
+
+FALLBACK = "I don't know, let me connect you to a person"
 
 
 def main():
-    if not TEST_PATH.exists():
-        raise FileNotFoundError(f"Test file not found: {TEST_PATH}")
+    test_data = pd.read_csv(
+        TEST_PATH,
+        dtype={"id": str}
+    )
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    ground_truth = pd.read_csv(
+        GROUND_TRUTH_PATH,
+        dtype=str
+    )
 
-    test_data = pd.read_csv(TEST_PATH)
+    test_data["id"] = test_data["id"].str.strip()
 
-    required_columns = {"id", "question"}
-    missing = required_columns - set(test_data.columns)
+    ground_truth["test_id"] = (
+        ground_truth["test_id"].str.strip()
+    )
 
-    if missing:
-        raise ValueError(f"Missing columns: {missing}")
+    ground_truth["expected_faq_id"] = (
+        ground_truth["expected_faq_id"].str.strip()
+    )
 
-    if test_data.empty:
-        raise ValueError("Test dataset is empty.")
+    data = test_data.merge(
+        ground_truth,
+        left_on="id",
+        right_on="test_id",
+        how="left",
+        validate="one_to_one"
+    )
 
-    print(f"\nTotal test questions: {len(test_data)}")
-
-    retriever = FAQRetriever()
-
-    evaluation_results = []
-
-    for _, test_row in test_data.iterrows():
-        question_id = test_row["id"]
-        question = str(test_row["question"])
-
-        results = retriever.search(question, top_k=3)
-
-        if not results:
-            print(f"\n[{question_id}] {question}")
-            print("No retrieval results.")
-            continue
-
-        top_result = results[0]
-        second_score = (
-            results[1]["similarity"] if len(results) > 1 else 0
+    if data["expected_faq_id"].isna().any():
+        raise ValueError(
+            "Some test questions have no ground-truth label."
         )
 
-        print("\n" + "=" * 70)
-        print(f"QUESTION ID: {question_id}")
-        print(f"QUESTION: {question}")
+    if len(data) != 40:
+        raise ValueError(
+            f"Expected 40 test questions, found {len(data)}."
+        )
 
-        print("\nTOP 3 RETRIEVED FAQs:")
+    print(f"Total test questions: {len(data)}")
 
-        for rank, result in enumerate(results, start=1):
-            print(f"\nRank: {rank}")
-            print(f"FAQ ID: {result['id']}")
-            print(f"Topic: {result['topic']}")
-            print(f"Question: {result['question']}")
-            print(f"Similarity: {result['similarity']}")
-            print(f"Relevant (current threshold): {result['is_relevant']}")
+    assistant = BankAssistant()
 
-        evaluation_results.append({
-            "test_id": question_id,
-            "customer_question": question,
-            "top_faq_id": top_result["id"],
-            "top_faq_topic": top_result["topic"],
-            "top_faq_question": top_result["question"],
-            "top_similarity": top_result["similarity"],
-            "second_similarity": second_score,
-            "score_gap": round(
-                top_result["similarity"] - second_score, 4
-            ),
-            "current_threshold_match": top_result["is_relevant"],
-            "manual_expected_faq_id": "",
-            "manual_correct": ""
+    rows = []
+
+    for _, item in data.iterrows():
+
+        test_id = item["id"]
+        question = str(item["question"]).strip()
+        expected = item["expected_faq_id"]
+
+        # Measure complete assistant response time.
+        start_time = time.perf_counter()
+
+        try:
+            result = assistant.ask(question)
+
+            latency = time.perf_counter() - start_time
+
+        except Exception as error:
+            latency = time.perf_counter() - start_time
+
+            result = {
+                "answer": "",
+                "faq_id": None,
+                "status": "error",
+                "error": str(error)
+            }
+
+        answer = str(result.get("answer", "")).strip()
+
+        returned_faq_id = result.get("faq_id")
+
+        if returned_faq_id is not None:
+            returned_faq_id = str(returned_faq_id)
+
+        status = str(result.get("status", "error")).lower()
+
+        is_unsupported = expected == "NO_ANSWER"
+
+        # Correct answer means the assistant selected
+        # the expected FAQ and returned a grounded answer.
+        correct_answer = (
+            not is_unsupported
+            and status == "answered"
+            and returned_faq_id == expected
+            and bool(answer)
+        )
+
+       
+        correct_fallback = (
+            is_unsupported
+            and status == "fallback"
+            and bool(answer)
+        )
+
+        correct = correct_answer or correct_fallback
+
+        if is_unsupported:
+            outcome = (
+                "CORRECT_FALLBACK"
+                if correct_fallback
+                else "INCORRECT_UNSUPPORTED_RESPONSE"
+            )
+
+        else:
+            outcome = (
+                "CORRECT_ANSWER"
+                if correct_answer
+                else "INCORRECT_ANSWER"
+            )
+
+        rows.append({
+            "test_id": test_id,
+            "question": question,
+            "expected_faq_id": expected,
+            "returned_faq_id": returned_faq_id,
+            "answer": answer,
+            "status": status,
+            "correct_answer": correct_answer,
+            "correct_fallback": correct_fallback,
+            "correct": correct,
+            "outcome": outcome,
+            "latency_seconds": round(latency, 4),
+            "error": result.get("error", "")
         })
 
-    report = pd.DataFrame(evaluation_results)
-    report.to_csv(OUTPUT_PATH, index=False, encoding="utf-8-sig")
+        print(
+            f"[{test_id:>2}] "
+            f"Expected={expected:<10} "
+            f"Returned={str(returned_faq_id):<10} "
+            f"Outcome={outcome:<32} "
+            f"Time={latency:.3f}s"
+        )
 
-    print("\n" + "=" * 70)
-    print("EVALUATION COMPLETED")
-    print(f"Questions processed: {len(evaluation_results)}")
-    print(f"Results saved to: {OUTPUT_PATH}")
-    print("=" * 70)
+    report = pd.DataFrame(rows)
+
+    OUTPUT_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    report.to_csv(
+        OUTPUT_PATH,
+        index=False,
+        encoding="utf-8-sig"
+    )
+
+    answerable = report[
+        report["expected_faq_id"] != "NO_ANSWER"
+    ]
+
+    unsupported = report[
+        report["expected_faq_id"] == "NO_ANSWER"
+    ]
+
+    total_correct_answers = int(
+        answerable["correct_answer"].sum()
+    )
+
+    total_correct_fallbacks = int(
+        unsupported["correct_fallback"].sum()
+    )
+
+    total_correct = int(report["correct"].sum())
+
+    average_latency = report["latency_seconds"].mean()
+
+    total_time = report["latency_seconds"].sum()
+
+    print("\n" + "=" * 65)
+    print("FINAL LOCAL ASSISTANT EVALUATION")
+    print("=" * 65)
+
+    print(f"Total questions: {len(report)}")
+
+    print(
+        f"Answerable questions: {len(answerable)}"
+    )
+
+    print(
+        f"Correct answers: "
+        f"{total_correct_answers}/{len(answerable)}"
+    )
+
+    print(
+        f"Unsupported questions: {len(unsupported)}"
+    )
+
+    print(
+        f"Correct fallback responses: "
+        f"{total_correct_fallbacks}/{len(unsupported)}"
+    )
+
+    print(
+        f"Incorrect responses: "
+        f"{len(report) - total_correct}"
+    )
+
+    print(
+        f"Overall correct: "
+        f"{total_correct}/{len(report)} "
+        f"({total_correct / len(report):.2%})"
+    )
+
+    print(
+        f"Average response time: {average_latency:.3f}s"
+    )
+
+    print(
+        f"Total evaluation time: {total_time:.3f}s"
+    )
+
+    print(
+        f"Maximum response time: "
+        f"{report['latency_seconds'].max():.3f}s"
+    )
+
+    print(
+        f"Minimum response time: "
+        f"{report['latency_seconds'].min():.3f}s"
+    )
+
+    print(f"\nDetailed results: {OUTPUT_PATH}")
+
+    print("=" * 65)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,41 @@
+﻿test_id,question,expected_faq_id,retrieved_faq_id,top1_score,second_score,third_score,top3_faq_ids,expected_faq_rank,expected_faq_score,top1_correct,top3_correct,accepted_at_threshold,no_answer_false_accept
+1,Personal loan er interest rate koto?,19,19,0.9323,0.8039,0.7558,"19, 18, 20",1.0,0.9323,True,True,True,False
+2,When will my BEFTN transfer reach the other bank?,8,8,0.8864,0.7852,0.5861,"8, 7, 26",1.0,0.8864,True,True,True,False
+3,"Amar account theke ekta transaction ami korini, kothay janabo?",24,24,0.7107,0.6433,0.6399,"24, 2, 1",1.0,0.7107,True,True,True,False
+4,What happens if I break my FDR early?,17,17,0.7808,0.6296,0.3768,"17, 16, 8",1.0,0.7808,True,True,True,False
+5,What is the late payment fee on a credit card?,23,23,0.8635,0.6884,0.6247,"23, 22, 3",1.0,0.8635,True,True,True,False
+6,ক্রেডিট কার্ডের বিল কবে দিতে হয়?,22,22,0.7718,0.7419,0.6893,"22, 4, 5",1.0,0.7718,True,True,True,False
+7,Ek din e koto taka transfer kora jay?,7,7,0.7877,0.6109,0.5909,"7, 9, 26",1.0,0.7877,True,True,True,False
+8,How can I get a bank statement for the last six months?,11,11,0.7142,0.588,0.5627,"11, 13, 22",1.0,0.7142,True,True,True,False
+9,এসএমএস অ্যালার্টের জন্য কত চার্জ?,25,25,0.7887,0.5614,0.5482,"25, 8, 9",1.0,0.7887,True,True,True,False
+10,চেক বই পেতে কত দিন লাগে?,27,8,0.5745,0.5624,0.5469,"8, 27, 4",2.0,0.5624,False,True,True,False
+11,Will you waive the interest on my loan because my business made a loss?,NO_ANSWER,19,0.6163,0.5674,0.5415,"19, 18, 29",,,False,False,True,True
+12,FDR korte minimum koto taka lage?,16,16,0.848,0.7016,0.5445,"16, 17, 1",1.0,0.848,True,True,True,False
+13,আমার বন্ধুর অ্যাকাউন্টে কত টাকা আছে বলুন তো?,NO_ANSWER,4,0.6478,0.6373,0.5326,"4, 8, 13",,,False,False,True,True
+14,এটিএম থেকে দিনে সর্বোচ্চ কত টাকা তোলা যায়?,9,9,0.7747,0.6762,0.6405,"9, 8, 25",1.0,0.7747,True,True,True,False
+15,Can I open a joint account with my spouse?,14,14,0.9034,0.4784,0.4259,"14, 1, 13",1.0,0.9034,True,True,True,False
+16,What documents do I need to open a savings account?,1,1,0.9215,0.6453,0.6135,"1, 2, 13",1.0,0.9215,True,True,True,False
+17,Cheque er payment ta stop korbo kibhabe?,28,28,0.8971,0.6172,0.6168,"28, 29, 11",1.0,0.8971,True,True,True,False
+18,আজকের স্বর্ণের দাম কত?,NO_ANSWER,4,0.5027,0.4891,0.4768,"4, 23, 8",,,False,False,True,True
+19,আপনাদের সিঙ্গাপুরে কোনো শাখা আছে কি?,NO_ANSWER,8,0.6598,0.5881,0.5485,"8, 4, 15",,,False,False,True,True
+20,সেভিংস অ্যাকাউন্টে সর্বনিম্ন কত টাকা রাখতে হবে?,2,4,0.6518,0.6408,0.5703,"4, 8, 13",7.0,0.522,False,False,True,False
+21,Do you offer cryptocurrency trading accounts?,NO_ANSWER,5,0.4535,0.4387,0.4332,"5, 1, 14",,,False,False,True,True
+22,পার্সোনাল লোনের জন্য কী যোগ্যতা লাগে?,18,8,0.6121,0.5728,0.5652,"8, 15, 4",28.0,0.2294,False,False,True,False
+23,Debit card er annual fee koto?,3,3,0.9129,0.7921,0.7234,"3, 4, 23",1.0,0.9129,True,True,True,False
+24,"Card er PIN bhule gechi, reset korbo kibhabe?",5,5,0.871,0.7161,0.6402,"5, 4, 24",1.0,0.871,True,True,True,False
+25,Branch gulo kon din kon shomoy khola thake?,10,10,0.6552,0.647,0.6263,"10, 11, 8",1.0,0.6552,True,True,True,False
+26,নমিনি পরিবর্তন করতে কী লাগবে?,15,8,0.626,0.5473,0.5372,"8, 4, 15",3.0,0.5372,False,True,True,False
+27,"আমার কার্ড হারিয়ে গেছে, এখন কী করব?",4,4,0.7867,0.5902,0.5388,"4, 5, 3",1.0,0.7867,True,True,True,False
+28,How do I register for the NB Go mobile app?,6,6,0.9234,0.5732,0.4446,"6, 12, 5",1.0,0.9234,True,True,True,False
+29,Is there a fee to receive remittance from abroad?,26,26,0.8898,0.511,0.3945,"26, 7, 3",1.0,0.8898,True,True,True,False
+30,How much of the property value can I borrow for a home loan?,20,20,0.9158,0.6218,0.619,"20, 18, 19",1.0,0.9158,True,True,True,False
+31,Credit card nite hole income koto hote hobe?,21,22,0.807,0.8018,0.6795,"22, 21, 4",2.0,0.8018,False,True,True,False
+32,What is today's dollar to taka exchange rate?,NO_ANSWER,23,0.5121,0.5039,0.4961,"23, 26, 19",,,False,False,True,True
+33,Apnader bank er share kinle labh hobe?,NO_ANSWER,11,0.5971,0.5899,0.5784,"11, 13, 7",,,False,False,True,True
+34,"আমার মোবাইল নম্বর বদলাতে চাই, কীভাবে করব?",12,12,0.6352,0.4893,0.4798,"12, 4, 8",1.0,0.6352,True,True,True,False
+35,Account dormant hoye gele ki korte hobe?,13,13,0.8205,0.6331,0.6243,"13, 29, 2",1.0,0.8205,True,True,True,False
+36,Can you give me the phone number of the branch manager in Sylhet?,NO_ANSWER,12,0.5793,0.4907,0.3604,"12, 10, 6",,,False,False,True,True
+37,"Amar boyosh 17, ami ki student loan pabo?",NO_ANSWER,18,0.6815,0.6177,0.5949,"18, 20, 19",,,False,False,True,True
+38,KYC update koto bochor por por korte hoy?,30,30,0.8834,0.5993,0.5801,"30, 5, 12",1.0,0.8834,True,True,True,False
+39,আমার ব্যবসার জন্য ভিসা সহায়তা পাওয়া যাবে?,NO_ANSWER,8,0.6383,0.6028,0.5258,"8, 4, 15",,,False,False,True,True
+40,How do I close my account?,29,29,0.8796,0.5522,0.4967,"29, 13, 2",1.0,0.8796,True,True,True,False
