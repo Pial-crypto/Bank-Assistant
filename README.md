@@ -177,7 +177,7 @@ assignment.
   Unsupported questions                       10
   Correct fallback responses              9 / 10
   Overall correct                        33 / 40
-  Overall accuracy                        82.50%
+  Overall accuracy                    **82.50%**
   Average response time            6.684 seconds
   Maximum response time           40.852 seconds
   Minimum response time            0.030 seconds
@@ -209,6 +209,82 @@ A reliable latency comparison was not available.
 Therefore, the online model's results should not be interpreted as a
 fully compliant 40/40 result.
 
+## Optional Experiment: Banglish Fine-Tuning
+
+**Kaggle Notebook:** [View Banglish Fine-Tuning
+Experiment](https://www.kaggle.com/code/mahamudulhassanpial/notebook35aceba83e)
+
+As an additional experiment, the base Qwen2.5-3B model was fine-tuned to
+normalize Banglish banking queries into clear English banking questions.
+
+### Training Setup
+
+-   **Base model:** `Qwen/Qwen2.5-3B-Instruct`
+-   **Training environment:** Kaggle with NVIDIA Tesla T4 GPU
+-   **Fine-tuning method:** QLoRA with 4-bit quantization and LoRA
+    adapters
+-   **Training data:** Banglish query aliases extracted from the
+    supplied banking FAQ dataset
+-   **Training objective:** Convert Banglish banking queries into clear
+    English banking questions
+-   **Training epochs:** 3
+-   **Best adapter:** Epoch 1, selected using validation loss
+
+### Training Results
+
+  Epoch     Training Loss   Validation Loss
+  ------- --------------- -----------------
+  1                1.9321        **0.8893**
+  2                0.5747            1.0710
+  3                0.2298            1.2635
+
+Training loss decreased across the epochs, but validation loss increased
+after the first epoch. This indicates signs of overfitting. Therefore,
+the Epoch 1 adapter with the lowest validation loss was selected for
+testing.
+
+### Base Model vs Fine-Tuned Model
+
+The two models were evaluated directly on the Banglish normalization
+task, without running the FAQ retrieval system.
+
+The evaluation used the 10 Banglish questions detected in the supplied
+40-question test dataset. Semantic similarity was calculated against the
+corresponding English FAQ questions.
+
+  Metric                          Base Qwen2.5-3B   Fine-Tuned Qwen2.5-3B
+  ----------------------------- ----------------- -----------------------
+  Average semantic similarity          **0.7670**                  0.6805
+  Average generation time           **1.240 sec**               1.509 sec
+
+Additional comparison:
+
+-   Fine-tuned model improved on 2 questions.
+-   Performance declined on 7 questions.
+-   Performance remained unchanged on 1 question.
+
+### Fine-Tuning Conclusion
+
+The fine-tuning process completed successfully, and the adapter was
+saved. However, the experiment did not demonstrate an improvement over
+the original base model.
+
+The base model achieved higher average semantic similarity and lower
+average generation time on the evaluated Banglish queries.
+
+The increasing validation loss also suggests overfitting. Further
+improvements would require better training examples, more representative
+data, and improved training configuration.
+
+This experiment is reported separately from the main RAG evaluation
+because it measures Banglish normalization quality rather than
+end-to-end banking question-answering accuracy.
+
+**Important:** The semantic similarity score is not a direct measure of
+answer correctness. The comparison is limited to the evaluated Banglish
+queries and should not be treated as proof of performance on unseen
+queries.
+
 ## Limitations
 
 -   The assistant's accuracy depends on the coverage and quality of the
@@ -226,6 +302,8 @@ fully compliant 40/40 result.
 -   The confidence thresholds were tuned using the assignment's supplied
     evaluation questions, so the reported performance should not be
     treated as proof of general performance on unseen questions.
+-   The optional fine-tuning experiment did not improve the measured
+    Banglish normalization performance.
 
 ## Future Improvements
 
@@ -233,6 +311,8 @@ fully compliant 40/40 result.
     questions.
 -   Improve Banglish normalization and language detection.
 -   Improve fallback and translation reliability.
+-   Experiment with more representative Banglish training examples and
+    improved fine-tuning configurations.
 -   Add a real customer-support integration if the bank provides an
     appropriate support API.
 -   Optimize local inference latency.
