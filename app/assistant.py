@@ -213,14 +213,14 @@ Do not use a single Bengali-script character.
 
             return self.fallback_response(language)
 
-        # Get the answer exclusively from the FAQ dataset
+        
         faq_answer = str(top1["answer"]).strip()
 
         if not faq_answer:
             print("FAQ answer is empty.")
             return self.fallback_response(language)
 
-        # Translate answer into the user's language
+        
         final_answer = self.translate_response(
             faq_answer,
             language
